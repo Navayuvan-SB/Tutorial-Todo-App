@@ -1,14 +1,22 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>
-      Ionic Blank
+    <ion-title text-center>
+      Todo App
     </ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v3">docs</a> will be your guide.
-  </p>
+  <ion-tabs>
+    <ion-tab
+      tabIcon="timer"
+      tabTitle="UnDone"
+      [root]="tabs.unDone"
+    ></ion-tab>
+    <ion-tab
+      tabIcon="checkmark-circle-outline"
+      tabTitle="Done"
+      [root]="tabs.done"
+    ></ion-tab>
+  </ion-tabs>
 </ion-content>
