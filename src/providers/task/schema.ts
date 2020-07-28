@@ -4,3 +4,8 @@ export interface Task {
   text: string;
   status: boolean;
 }
+
+export interface Response {
+  status: boolean;
+  message: string;
+}

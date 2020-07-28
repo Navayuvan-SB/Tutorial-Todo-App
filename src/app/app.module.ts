@@ -9,18 +9,28 @@ import { HomePage } from "../pages/home/home";
 import { DonePage } from "../pages/done/done";
 import { UnDonePage } from "../pages/un-done/un-done";
 import { UndoneTaskComponent } from "../components/undone-task/undone-task";
-import { TaskProvider } from '../providers/task/task';
+import { TaskProvider } from "../providers/task/task";
+
+import firebaseConfig from "../credentials/firebase";
+
+import { AngularFireModule } from "angularfire2";
+import { AngularFirestoreModule } from "angularfire2/firestore";
+import { DoneTaskComponent } from "../components/done-task/done-task";
 
 @NgModule({
-  declarations: [MyApp, HomePage, DonePage, UnDonePage, UndoneTaskComponent],
-  imports: [BrowserModule, IonicModule.forRoot(MyApp)],
+  declarations: [MyApp, HomePage, DonePage, UnDonePage, UndoneTaskComponent, DoneTaskComponent],
+  imports: [
+    BrowserModule,
+    AngularFirestoreModule,
+    AngularFireModule.initializeApp(firebaseConfig),
+    IonicModule.forRoot(MyApp),
+  ],
   bootstrap: [IonicApp],
   entryComponents: [MyApp, HomePage, DonePage, UnDonePage],
   providers: [
     StatusBar,
     SplashScreen,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
-    TaskProvider,
     TaskProvider,
   ],
 })

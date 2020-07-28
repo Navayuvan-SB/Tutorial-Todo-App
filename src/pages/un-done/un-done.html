@@ -1,5 +1,3 @@
 <ion-content padding>
-  <undone-task></undone-task>
-  <undone-task></undone-task>
-  <undone-task></undone-task>
+  <undone-task *ngFor="let task of tasks" [task]="task"></undone-task>
 </ion-content>

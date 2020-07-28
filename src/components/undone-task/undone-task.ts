@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from "@angular/core";
+import { Task } from "../../providers/task/schema";
 
 /**
  * Generated class for the UndoneTaskComponent component.
@@ -7,16 +8,12 @@ import { Component } from '@angular/core';
  * Components.
  */
 @Component({
-  selector: 'undone-task',
-  templateUrl: 'undone-task.html'
+  selector: "undone-task",
+  templateUrl: "undone-task.html",
 })
 export class UndoneTaskComponent {
+  // task object
+  @Input() task: Task;
 
-  text: string;
-
-  constructor() {
-    console.log('Hello UndoneTaskComponent Component');
-    this.text = 'Hello World';
-  }
-
+  constructor() {}
 }
