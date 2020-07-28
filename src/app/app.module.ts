@@ -9,6 +9,7 @@ import { HomePage } from "../pages/home/home";
 import { DonePage } from "../pages/done/done";
 import { UnDonePage } from "../pages/un-done/un-done";
 import { UndoneTaskComponent } from "../components/undone-task/undone-task";
+import { TaskProvider } from '../providers/task/task';
 
 @NgModule({
   declarations: [MyApp, HomePage, DonePage, UnDonePage, UndoneTaskComponent],
@@ -19,6 +20,8 @@ import { UndoneTaskComponent } from "../components/undone-task/undone-task";
     StatusBar,
     SplashScreen,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
+    TaskProvider,
+    TaskProvider,
   ],
 })
 export class AppModule {}
