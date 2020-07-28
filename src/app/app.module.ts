@@ -8,9 +8,10 @@ import { MyApp } from "./app.component";
 import { HomePage } from "../pages/home/home";
 import { DonePage } from "../pages/done/done";
 import { UnDonePage } from "../pages/un-done/un-done";
+import { UndoneTaskComponent } from "../components/undone-task/undone-task";
 
 @NgModule({
-  declarations: [MyApp, HomePage, DonePage, UnDonePage],
+  declarations: [MyApp, HomePage, DonePage, UnDonePage, UndoneTaskComponent],
   imports: [BrowserModule, IonicModule.forRoot(MyApp)],
   bootstrap: [IonicApp],
   entryComponents: [MyApp, HomePage, DonePage, UnDonePage],

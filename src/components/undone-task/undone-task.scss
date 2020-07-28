@@ -1,0 +1,17 @@
+undone-task {
+  // action buttons
+  button {
+    width: 4rem;
+  }
+
+  ion-item,
+  ion-item-sliding {
+    height: 6rem;
+    background-color: #f0f0f0 !important;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+  }
+}
