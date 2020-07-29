@@ -1,9 +1,10 @@
 import { Component } from "@angular/core";
-import { NavController, AlertController } from "ionic-angular";
+import { NavController, AlertController, Platform } from "ionic-angular";
 import { UnDonePage } from "../un-done/un-done";
 import { DonePage } from "../done/done";
 import { TaskProvider } from "../../providers/task/task";
 import { ThemeProvider } from "../../providers/theme/theme";
+import { Storage } from "@ionic/storage";
 
 @Component({
   selector: "page-home",
@@ -23,8 +24,18 @@ export class HomePage {
     public navCtrl: NavController,
     private alertCtrl: AlertController,
     private taskProvider: TaskProvider,
-    private themeProvider: ThemeProvider
-  ) {}
+    private themeProvider: ThemeProvider,
+    private plt: Platform,
+    private storage: Storage
+  ) {
+    plt.ready().then(() => {
+      this.storage.get("DARK_THEME").then((value) => {
+        if (value) {
+          this.darkTheme = true;
+        }
+      });
+    });
+  }
 
   // show add todo prompt
   showAlertPrompt() {

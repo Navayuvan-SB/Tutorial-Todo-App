@@ -18,6 +18,8 @@ import { AngularFirestoreModule } from "angularfire2/firestore";
 import { DoneTaskComponent } from "../components/done-task/done-task";
 import { ThemeProvider } from '../providers/theme/theme';
 
+import { IonicStorageModule } from '@ionic/storage';
+
 @NgModule({
   declarations: [MyApp, HomePage, DonePage, UnDonePage, UndoneTaskComponent, DoneTaskComponent],
   imports: [
@@ -25,6 +27,7 @@ import { ThemeProvider } from '../providers/theme/theme';
     AngularFirestoreModule,
     AngularFireModule.initializeApp(firebaseConfig),
     IonicModule.forRoot(MyApp),
+    IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],
   entryComponents: [MyApp, HomePage, DonePage, UnDonePage],

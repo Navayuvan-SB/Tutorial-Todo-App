@@ -1,5 +1,7 @@
 {
   "name": "DemoTodoApp",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "ionic-angular"
 }
