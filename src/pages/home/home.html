@@ -1,22 +1,31 @@
 <ion-header>
-  <ion-navbar>
+  <ion-toolbar>
     <ion-title text-center>
-      Todo App
+      <h3>Todo App</h3>
     </ion-title>
-  </ion-navbar>
+    <ion-buttons end (click)="toggleDarkTheme()">
+      <button ion-button icon-only color="primary">
+        <ion-icon *ngIf="darkTheme" name="bulb"></ion-icon>
+        <ion-icon *ngIf="!darkTheme" name="ios-bulb"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-toolbar>
 </ion-header>
 
 <ion-content padding>
   <ion-tabs>
-    <ion-tab
-      tabIcon="timer"
-      tabTitle="UnDone"
-      [root]="tabs.unDone"
-    ></ion-tab>
+    <ion-tab tabIcon="timer" tabTitle="UnDone" [root]="tabs.unDone"></ion-tab>
     <ion-tab
       tabIcon="checkmark-circle-outline"
       tabTitle="Done"
       [root]="tabs.done"
     ></ion-tab>
   </ion-tabs>
+
+  <!-- FAB -->
+  <ion-fab bottom center>
+    <button ion-fab color="primary" (click)="showAlertPrompt()">
+      <ion-icon name="add"></ion-icon>
+    </button>
+  </ion-fab>
 </ion-content>

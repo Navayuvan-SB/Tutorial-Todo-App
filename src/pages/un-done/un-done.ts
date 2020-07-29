@@ -47,7 +47,6 @@ export class UnDonePage {
             return item.id !== todo.doc.id;
           });
         }
-        // console.log(this.tasks);
       });
     });
   }

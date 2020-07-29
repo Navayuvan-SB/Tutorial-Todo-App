@@ -1,10 +1,14 @@
 import { Injectable } from "@angular/core";
-import { Task, Response } from "./schema";
 import { AngularFirestore } from "angularfire2/firestore";
+import { ToastController, LoadingController } from "ionic-angular";
 
 @Injectable()
 export class TaskProvider {
-  constructor(private db: AngularFirestore) {}
+  constructor(
+    private db: AngularFirestore,
+    private toastController: ToastController,
+    private loadingCtrl: LoadingController
+  ) {}
 
   // fetch all the todo item which is completed
   getDoneTodos() {
@@ -19,49 +23,57 @@ export class TaskProvider {
   }
 
   // update todo status
-  async markTodoAsDone(id: string): Promise<Response> {
+  async markTodoAsDone(
+    id: string
+  ): Promise<{ status: boolean; message: string }> {
     return new Promise(async (resolve, reject) => {
       try {
         await this.db.collection("todos").doc(id).update({
           status: true,
         });
 
-        resolve({
+        const response: { status: boolean; message: string } = {
           status: true,
           message: "Marked as done",
-        });
+        };
+
+        resolve(response);
       } catch (e) {
         console.log(e);
-        reject({
+        const response: { status: boolean; message: string } = {
           status: false,
           message: e.message,
-        });
+        };
+        reject(response);
       }
     });
   }
 
   // delete todo item
-  async deleteTodo(id: string): Promise<Response> {
+  async deleteTodo(id: string): Promise<{ status: boolean; message: string }> {
     return new Promise(async (resolve, reject) => {
       try {
         await this.db.collection("todos").doc(id).delete();
 
-        resolve({
+        const response: { status: boolean; message: string } = {
           status: true,
-          message: "Todo deleted!",
-        });
+          message: "ToDo deleted",
+        };
+
+        resolve(response);
       } catch (e) {
         console.log(e);
-        reject({
+        const response: { status: boolean; message: string } = {
           status: false,
           message: e.message,
-        });
+        };
+        reject(response);
       }
     });
   }
 
   // add todo item
-  async addTodo(text: string): Promise<Response> {
+  async addTodo(text: string): Promise<{ status: boolean; message: string }> {
     return new Promise(async (resolve, reject) => {
       try {
         let d = new Date();
@@ -72,17 +84,39 @@ export class TaskProvider {
           text: text,
         });
 
-        resolve({
+        const response: { status: boolean; message: string } = {
           status: true,
           message: "ToDo added",
-        });
+        };
+
+        resolve(response);
       } catch (e) {
         console.log(e);
-        reject({
+
+        const response: { status: boolean; message: string } = {
           status: false,
           message: e.message,
-        });
+        };
+        reject(response);
       }
     });
+  }
+ 
+  // present toast
+  presentToast(message: string) {
+    const toast = this.toastController.create({
+      message: message,
+      duration: 3000,
+      position: "bottom",
+    });
+    toast.present();
+  }
+
+  presentLoading() {
+    const loader = this.loadingCtrl.create({
+      content: "Please wait...",
+    });
+
+    return loader;
   }
 }

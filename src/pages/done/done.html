@@ -1,3 +1,9 @@
 <ion-content padding>
-  <done-task *ngFor="let task of tasks" [task]="task"></done-task>
+  <div *ngIf="tasks.length !== 0; else spinner">
+    <done-task *ngFor="let task of tasks" [task]="task"></done-task>
+  </div>
+
+  <ng-template #spinner>
+    <h5 class="helper-text">There are no completed tasks</h5>
+  </ng-template>
 </ion-content>

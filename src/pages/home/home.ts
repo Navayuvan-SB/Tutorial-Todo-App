@@ -1,7 +1,9 @@
 import { Component } from "@angular/core";
-import { NavController } from "ionic-angular";
+import { NavController, AlertController } from "ionic-angular";
 import { UnDonePage } from "../un-done/un-done";
 import { DonePage } from "../done/done";
+import { TaskProvider } from "../../providers/task/task";
+import { ThemeProvider } from "../../providers/theme/theme";
 
 @Component({
   selector: "page-home",
@@ -14,5 +16,64 @@ export class HomePage {
     done: DonePage,
   };
 
-  constructor(public navCtrl: NavController) {}
+  // darktheme
+  darkTheme: boolean = false;
+
+  constructor(
+    public navCtrl: NavController,
+    private alertCtrl: AlertController,
+    private taskProvider: TaskProvider,
+    private themeProvider: ThemeProvider
+  ) {}
+
+  // show add todo prompt
+  showAlertPrompt() {
+    const prompt = this.alertCtrl.create({
+      title: "Add Todo",
+      message: "Enter the thing to do!",
+      inputs: [
+        {
+          name: "todo",
+          placeholder: "What do you want to do?",
+        },
+      ],
+      buttons: [
+        {
+          text: "Cancel",
+        },
+        {
+          text: "Save",
+          handler: (data) => {
+            this.addTodo(data.todo);
+          },
+        },
+      ],
+    });
+
+    prompt.present();
+  }
+
+  async addTodo(text: string) {
+    const loader = this.taskProvider.presentLoading();
+    loader.present();
+
+    try {
+      const result = await this.taskProvider.addTodo(text);
+      loader.dismiss();
+      this.taskProvider.presentToast(result.message);
+    } catch (error) {
+      loader.dismiss();
+      this.taskProvider.presentToast(error.message);
+    }
+  }
+
+  // toggle dark theme
+  toggleDarkTheme() {
+    this.darkTheme = !this.darkTheme;
+    if (this.darkTheme) {
+      this.themeProvider.enableDarkTheme();
+    } else {
+      this.themeProvider.disableDarkTheme();
+    }
+  }
 }

@@ -4,10 +4,20 @@
       <h2>{{task.text}}</h2>
     </ion-item>
     <ion-item-options>
-      <button ion-button color="danger" icon-start>
+      <button
+        ion-button
+        color="danger"
+        icon-start
+        (click)="deleteTodoItem(task.id)"
+      >
         <ion-icon name="md-trash"></ion-icon>
       </button>
-      <button ion-button color="secondary" icon-start>
+      <button
+        ion-button
+        color="secondary"
+        icon-start
+        (click)="markAsDone(task.id)"
+      >
         <ion-icon name="md-checkbox-outline"></ion-icon>
       </button>
     </ion-item-options>

@@ -16,6 +16,7 @@ import firebaseConfig from "../credentials/firebase";
 import { AngularFireModule } from "angularfire2";
 import { AngularFirestoreModule } from "angularfire2/firestore";
 import { DoneTaskComponent } from "../components/done-task/done-task";
+import { ThemeProvider } from '../providers/theme/theme';
 
 @NgModule({
   declarations: [MyApp, HomePage, DonePage, UnDonePage, UndoneTaskComponent, DoneTaskComponent],
@@ -32,6 +33,7 @@ import { DoneTaskComponent } from "../components/done-task/done-task";
     SplashScreen,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     TaskProvider,
+    ThemeProvider,
   ],
 })
 export class AppModule {}

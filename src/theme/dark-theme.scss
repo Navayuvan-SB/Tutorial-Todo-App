@@ -1,0 +1,55 @@
+.dark-theme {
+  ion-content {
+    background-color: rgb(32, 32, 32);
+  }
+
+  .toolbar-background,
+  .tab-button,
+  .alert-md .alert-wrapper {
+    background-color: rgb(22, 22, 22) !important;
+    color: rgb(228, 228, 228);
+
+    .alert-message {
+      color: rgb(233, 233, 233);
+    }
+
+    input {
+      color: rgb(228, 228, 228);
+    }
+  }
+
+  ion-title {
+    h3 {
+      color: rgb(236, 236, 236);
+    }
+  }
+
+  .task-item {
+    // action buttons
+    button {
+      width: 4rem;
+    }
+
+    // task item
+    ion-item,
+    ion-item-sliding {
+      color: rgb(224, 224, 224) !important;
+      height: 6rem;
+      background-color: #3d3d3d !important;
+      border-radius: 10px;
+      -webkit-border-radius: 10px;
+      -moz-border-radius: 10px;
+      -ms-border-radius: 10px;
+      -o-border-radius: 10px;
+    }
+  }
+
+  // center a component
+  .helper-text {
+    height: 98%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #929292;
+  }
+}
