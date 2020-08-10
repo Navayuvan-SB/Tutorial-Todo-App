@@ -27,12 +27,12 @@ export class UnDonePage {
 
   ionViewDidLoad() {
     // this.tasks = this.taskProvider.getTodos();
-
     this.getUnDoneTodo();
   }
 
   getUnDoneTodo() {
     const doneTodos = this.taskProvider.getPendingTodos();
+
     doneTodos.onSnapshot((snapshot) => {
       snapshot.docChanges.forEach((todo) => {
         if (todo.type === "added") {

@@ -30,21 +30,23 @@ export class DonePage {
 
   getDoneTodo() {
     const doneTodos = this.taskProvider.getDoneTodos();
-    doneTodos.onSnapshot((snapshot) => {
-      snapshot.docChanges.forEach((todo) => {
-        if (todo.type === "added") {
-          this.tasks.push({
-            id: todo.doc.id,
-            status: todo.doc.data().status,
-            text: todo.doc.data().text,
-          });
-        }
-        if (todo.type === "removed") {
-          this.tasks = this.tasks.filter(function (item) {
-            return item.id !== todo.doc.id;
-          });
-        }
+    if (doneTodos) {
+      doneTodos.onSnapshot((snapshot) => {
+        snapshot.docChanges.forEach((todo) => {
+          if (todo.type === "added") {
+            this.tasks.push({
+              id: todo.doc.id,
+              status: todo.doc.data().status,
+              text: todo.doc.data().text,
+            });
+          }
+          if (todo.type === "removed") {
+            this.tasks = this.tasks.filter(function (item) {
+              return item.id !== todo.doc.id;
+            });
+          }
+        });
       });
-    });
+    }
   }
 }
