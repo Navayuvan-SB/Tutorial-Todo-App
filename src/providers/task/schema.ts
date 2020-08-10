@@ -6,6 +6,6 @@ export interface Task {
 }
 
 export interface Response {
-  status: boolean;
-  message: string;
+  status?: boolean;
+  message?: string;
 }
